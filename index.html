@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+  <style>
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  background: repeating-linear-gradient(-45deg,#111, #111 4px, #2a2314 4px, #2a2314 8px);
+  padding: 40px 25px;
+  border-top: 6px solid #17c0eb;
+}
+
+.form-container h1 {
+  color: #ffffff05;
+  font-size: 30px;
+  font-weight: 500;
+  text-transform: capitalize;
+  width: calc(100% - 129px);
+  margin: 0 0 40px;
+  display: inline-block;
+}
+
+/* Assuming the "create-account" class applies to a link inside the h1 */
+.form-container h1 .create-account {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+  width: 125px;
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+}
+
+
+.form-container h1 .create-account a {
+  color: #fff;
+  transition: all 0.3s ease 0s;
+  text-align: center;
+}
+
+.form-container h1 .create-account a:hover {
+  color: #17c0eb;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 50px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff; 
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #fff; 
+  background: transparent; 
+}
+
+.form-group input[type="checkbox"] {
+  width: auto;
+}
+
+.form-group button {
+  padding: 20px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+.form-group button:hover,
+.form-group button:focus {
+  background-color: #498a9b;
+  outline: none;
+}
+
+.form-group button[type="reset"] {
+  background-color: #f44336;
+}
+
+
+  </style>
+</head>
+<body>
+    <h1>Form sample</h1>
+  <div class="form-container">
+    <form id="myForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="about">About me:</label>
+        <textarea id="about" name="about" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="subscribe">Subscribe:</label>
+        <input type="checkbox" id="subscribe" name="subscribe">
+      </div>
+      <div class="form-group">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('myForm');
+    const output = document.getElementById('output');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      output.innerHTML = JSON.stringify(data, null, 2);
+    });
+
+    form.addEventListener('reset', function() {
+      output.innerHTML = '';
+    });
+  </script>
+</body>
+</html>
